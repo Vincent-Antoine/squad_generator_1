@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Liste des Participants</title>
+  </head>
+  <body>
+    <h1>Liste des Participants et Équipes</h1>
+    <ul>
+      {% for participant in participants %}
+      <li>
+        {{ participant['nom'] }} - {{ participant['couleur_equipe'] }}
+        <a
+          href="{{ url_for('afficher_couleur_equipe', nom_participant=participant['nom']) }}"
+          >Voir la couleur de votre équipe</a
+        >
+      </li>
+      {% endfor %}
+    </ul>
+
+    <h2>Équipes :</h2>
+    <ul>
+      {% for couleur, equipe in equipes.items() %}
+      <li>
+        Équipe {{ couleur }}:
+        <ul>
+          {% for participant in equipe %}
+          <li>{{ participant['nom'] }}</li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% endfor %}
+    </ul>
+    <h2>Actions :</h2>
+    <button onclick="reinitialiserParticipants()">
+      Réinitialiser la liste des participants
+    </button>
+  </body>
+  <script>
+    function reinitialiserParticipants() {
+      fetch("http://127.0.0.1:5000/reinitialiser_participants", {
+        method: "POST",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          alert(data.message);
+          location.reload(); // Rafraîchir la page pour mettre à jour la liste des participants
+        })
+        .catch((error) => console.error("Erreur :", error));
+    }
+  </script>
+</html>

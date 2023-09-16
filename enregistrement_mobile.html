@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Enregistrement Mobile</title>
+  </head>
+  <body>
+    <h1>Enregistrement Mobile</h1>
+    <p>Veuillez remplir le formulaire ci-dessous pour vous enregistrer :</p>
+    <form action="/enregistrer_participant" method="post">
+      <input type="hidden" name="nom" value="{{ nom }}" />
+      <label for="couleur_equipe">Choisissez votre couleur d'équipe :</label>
+      <select id="couleur_equipe" name="couleur_equipe">
+        {% for couleur in equipes.keys() %}
+        <option value="{{ couleur }}">{{ couleur }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit">Enregistrer</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Générateur d'équipes</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Bienvenue ! Enregistrez-vous pour rejoindre une équipe.</h1>
+      <div id="form-container">
+        <label for="name">Nom et prénom:</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Votre nom et prénom"
+          required
+        />
+        <button onclick="enregistrerParticipant()">Enregistrer</button>
+      </div>
+    </div>
+    <a style="opacity: 10%" href="{{ url_for('liste_participants') }}"
+      >Voir la liste des participants</a
+    >
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
